@@ -1,0 +1,1 @@
+{"name":"aurexcictlms","framework":"nextjs","regions":["iad1"],"buildCommand":"next build","devCommand":"next dev","installCommand":"npm install"}
