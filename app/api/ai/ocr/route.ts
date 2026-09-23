@@ -1,15 +1,22 @@
 import { NextResponse } from 'next/server';
-import Tesseract from 'tesseract.js';
+
+export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
   const { imageData } = await req.json();
   
-  // Tesseract OCR for Tamil
-  const { data: { text } } = await Tesseract.recognize(
-    imageData,
-    'tam',
-    { logger: m => console.log(m) }
-  );
+  let text = '';
+  try {
+    const { Tesseract } = await import('tesseract.js');
+    const { data: { text: detectedText } } = await Tesseract.recognize(
+      imageData,
+      'tam',
+      { logger: m => console.log(m) }
+    );
+    text = detectedText;
+  } catch (error) {
+    console.error('OCR Error:', error);
+  }
   
   return NextResponse.json({ 
     detectedText: text,

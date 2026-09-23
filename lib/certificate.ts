@@ -10,7 +10,6 @@ export async function generateCertificatePDF(data: {
 }) {
   const doc = new jsPDF('landscape', 'mm', 'a4');
   
-  // Header
   doc.setFontSize(24);
   doc.text('Certificate of Completion', 148, 50, { align: 'center' });
   
@@ -24,7 +23,6 @@ export async function generateCertificatePDF(data: {
   doc.text(`For completing ${data.workshopName}`, 148, 120, { align: 'center' });
   doc.text(`with ${data.attendance}% attendance`, 148, 135, { align: 'center' });
   
-  // QR Code
   const qrDataURL = await QRCode.toDataURL(`https://aurexcictlms.in/verify/${data.certificateId}`);
   doc.addImage(qrDataURL, 'PNG', 20, 100, 50, 50);
   

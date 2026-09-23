@@ -3,32 +3,27 @@ import { supabase } from '@/lib/supabase';
 import { generateCertificatePDF } from '@/lib/certificate';
 import { uploadToCloudinary } from '@/lib/cloudinary';
 
+export const runtime = 'nodejs';
+
 export async function POST(req: Request) {
   const { userId, workshopId, attendancePercent } = await req.json();
   
-  // Fetch user and workshop data
   const { data: user } = await supabase.from('users').select('*').eq('id', userId).single();
   const { data: workshop } = await supabase.from('workshops').select('*').eq('id', workshopId).single();
   
-  const certificateId = `CERT-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const certificateId = `CERT-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
   const date = new Date().toISOString().split('T')[0];
   
-  // Generate PDF
   const pdfBuffer = await generateCertificatePDF({
-    participantName: user.name,
-    workshopName: workshop.title,
+    participantName: user?.name || 'Unknown',
+    workshopName: workshop?.title || 'Unknown Workshop',
     attendance: attendancePercent,
     certificateId,
     date
   });
   
-  // Upload to Cloudinary
-  const blob = new Blob([pdfBuffer], { type: 'application/pdf' });
-  const file = new File([blob], `${certificateId}.pdf`, { type: 'application/pdf' });
+  const result = await uploadToCloudinary(Buffer.from(pdfBuffer), 'certificates');
   
-  const result = await uploadToCloudinary(file, 'certificates');
-  
-  // Save to database
   await supabase.from('certificates').insert({
     user_id: userId,
     workshop_id: workshopId,

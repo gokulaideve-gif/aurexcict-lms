@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server';
+import { supabase } from '@/lib/supabase';
 
 export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
-  const { workshopId, sessionId } = await req.json();
+  const { workshopId, sessionId, identity } = await req.json();
   
   const roomName = `workshop_${workshopId}_session_${sessionId}`;
   

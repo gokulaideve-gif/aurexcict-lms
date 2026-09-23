@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from './supabase';
 
@@ -17,21 +18,32 @@ export function useTrainees() {
 
 export function useWorkshops() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    supabase.from('workshops').select('*').then(({ data }) => setData(data || []));
+    supabase.from('workshops').select('*').then(({ data }) => {
+      setData(data || []);
+      setLoading(false);
+    });
   }, []);
   
-  return data;
+  return { data, loading };
 }
 
 export function useAttendance(userId: string) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    if (!userId) return;
-    supabase.from('attendance').select('*').eq('user_id', userId).then(({ data }) => setData(data || []));
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
+    supabase.from('attendance').select('*').eq('user_id', userId).then(({ data }) => {
+      setData(data || []);
+      setLoading(false);
+    });
   }, [userId]);
   
-  return data;
+  return { data, loading };
 }
