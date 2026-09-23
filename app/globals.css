@@ -1,0 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;700&display=swap');
+:root {--purple:#4A148C;--gold:#D4AF37;--white:#fff}
+body{margin:0;font-family:system-ui;background:#F7F6F9}
+.tamil{font-family:'Noto Sans Tamil',system-ui}
