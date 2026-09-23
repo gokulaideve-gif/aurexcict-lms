@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { supabase } from './supabase';
 
 export function useTrainees() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -17,7 +17,7 @@ export function useTrainees() {
 }
 
 export function useWorkshops() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
@@ -31,7 +31,7 @@ export function useWorkshops() {
 }
 
 export function useAttendance(userId: string) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {

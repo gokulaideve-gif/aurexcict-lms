@@ -22,7 +22,7 @@ export async function uploadToCloudinary(file: File | Buffer | string, folder: s
     return response.json();
   }
   
-  const blob = new Blob([file]);
+  const blob = new Blob([file as BlobPart]);
   const filePart = new File([blob], `${folder}.pdf`, { type: 'application/pdf' });
   formData.append('file', filePart);
   

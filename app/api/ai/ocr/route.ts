@@ -7,7 +7,8 @@ export async function POST(req: Request) {
   
   let text = '';
   try {
-    const { Tesseract } = await import('tesseract.js');
+    const TesseractModule = await import('tesseract.js');
+    const Tesseract = TesseractModule.default || TesseractModule;
     const { data: { text: detectedText } } = await Tesseract.recognize(
       imageData,
       'tam',

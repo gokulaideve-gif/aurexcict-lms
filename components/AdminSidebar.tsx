@@ -26,7 +26,7 @@ export default function AdminSidebar() {
       </div>
       <nav style={{padding:'10px 0'}}>
         {items.map(item => (
-          <div key={item} style={{padding:'12px 20px',cursor:'pointer',hover:{background:'#f5f5f5}'}}>{item}</div>
+          <div key={item} style={{padding:'12px 20px',cursor:'pointer'}}>{item}</div>
         ))}
       </nav>
     </div>
