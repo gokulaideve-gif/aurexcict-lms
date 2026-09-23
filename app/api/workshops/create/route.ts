@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
-import { uploadToCloudinary } from '@/lib/cloudinary';
+import { supabase } from '../../../lib/supabase';
+import { uploadToCloudinary } from '../../../lib/cloudinary';
 
 export async function POST(req: Request) {
   const { title, description, organizerId, thumbnail } = await req.json();

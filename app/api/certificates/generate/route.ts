@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
-import { generateCertificatePDF } from '@/lib/certificate';
-import { uploadToCloudinary } from '@/lib/cloudinary';
+import { supabase } from '../../../lib/supabase';
+import { generateCertificatePDF } from '../../../lib/certificate';
+import { uploadToCloudinary } from '../../../lib/cloudinary';
 
 export const runtime = 'nodejs';
 
