@@ -1,3 +1,4 @@
+'use client'
 export default function LiveClassroom() {
   return (
     <div style={{background:'#1a1a1a',color:'white',minHeight:'100vh'}}>

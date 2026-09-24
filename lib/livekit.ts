@@ -16,7 +16,21 @@ export async function getLiveToken(roomName: string, identity: string) {
   return response.json();
 }
 
+export async function joinLiveRoom(meetingId: string, identity: string) {
+  const response = await fetch('/api/live/join', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ meetingId, identity })
+  });
+  return response.json();
+}
+
+export async function getClassrooms(query?: string) {
+  const url = query ? `/api/live-classrooms?q=${encodeURIComponent(query)}` : '/api/live-classrooms';
+  const response = await fetch(url);
+  return response.json();
+}
+
 export function trackAttendance(sessionId: string, userId: string) {
-  // Track via Supabase Realtime
   return { sessionId, userId, joinTime: new Date().toISOString() };
 }

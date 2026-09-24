@@ -16,6 +16,11 @@ export default function LandingPage() {
       <div style={{padding:'60px 20px',textAlign:'center'}}>
         <h2>Zero Cost for CICT</h2>
         <p>Vercel + Supabase + Cloudinary + LiveKit Free + Sarvam AI + Groq AI</p>
+        <div style={{marginTop:'30px'}}>
+          <a href="/live-classroom" style={{background:'#4A148C',color:'white',padding:'16px 40px',borderRadius:'12px',textDecoration:'none',fontSize:'18px',fontWeight:'bold'}}>
+            📡 Join Live Classes →
+          </a>
+        </div>
       </div>
     </div>
   )
